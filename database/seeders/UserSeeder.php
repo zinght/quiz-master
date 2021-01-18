@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Hash;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -20,5 +21,8 @@ class UserSeeder extends Seeder
             'email' => "montyhollings@mailbox.org",
             'password' => Hash::make(env('user_password')),
         ]);
+        $user = User::first();
+        $user->assignRole('administrator');
+
     }
 }
