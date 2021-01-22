@@ -16,11 +16,12 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => "Monty",
-            'email' => "montyhollings@mailbox.org",
-            'password' => Hash::make(env('user_password')),
+        User::create([
+            'name' => 'Monty',
+            'email' => 'montyhollings@mailbox.org',
+            'password' => bcrypt(env('user_password')),
         ]);
+
         $user = User::first();
         $user->assignRole('administrator');
 
