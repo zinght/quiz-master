@@ -18,26 +18,27 @@
                                 <th></th>
                                 </thead>
                                 <tbody>
-                                @foreach($quizzes as $quiz)
-                                    <tr>
-                                        <td>{{$quiz->id}}</td>
-                                        <td>{{$quiz->name}}</td>
-                                        <td>{{$quiz->description}}</td>
-                                        <td>{{$quiz->created_by->name}}</td>
-                                        <td>
-                                            <button type="button" class="btn bt-info">test</button>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                @if(isset($quizzes))
+                                    @foreach($quizzes as $quiz)
+                                        <tr>
+                                            <td>{{$quiz->id}}</td>
+                                            <td>{{$quiz->name}}</td>
+                                            <td>{{$quiz->description}}</td>
+                                            <td>{{$quiz->created_by->name}}</td>
+                                            <td>
+                                                <button type="button" class="btn bt-info">test</button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                                 </tbody>
-
                             </table>
                         </div>
 
 
                     </div>
                     <div class="card-footer">
-                        <a href="{{route('users.create')}}" class="btn btn-primary">Create User</a>
+                        <a href="{{route('quizzes.create')}}" class="btn btn-primary">Create Quiz</a>
                     </div>
                 </div>
             </div>

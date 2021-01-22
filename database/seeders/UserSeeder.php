@@ -24,6 +24,6 @@ class UserSeeder extends Seeder
 
         $user = User::first();
         $user->assignRole('administrator');
-
+        app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
     }
 }

@@ -19,6 +19,9 @@ class AdminController extends Controller
 
     public function index(Request $request)
     {
+        $user = Auth::user();
+        $permissions = $user->getAllPermissions();
+        dd(User::permission('create_quizzes')->get() );
         $users = User::all();
         return view('users.index', compact('users'));
     }
