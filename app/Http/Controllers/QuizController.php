@@ -56,14 +56,16 @@ class QuizController extends Controller
     public function view(Request $request, Quiz $quiz)
     {
         $type = 'view';
+        $quiz->load('questions');
         return view('quizzes.add_edit', compact( 'quiz', 'type'));
     }
 
-    public function edit(Request $request, Quiz $quiz)
+    public function edit(Request $request, Quiz $quiz, $show = false)
     {
         $type = 'edit';
+        $quiz->load('questions');
         $formurl = route('quizzes.submit');
-        return view('quizzes.add_edit', compact( 'quiz', 'type', 'formurl'));
+        return view('quizzes.add_edit', compact( 'quiz', 'type', 'formurl', 'show'));
     }
 
     public function delete(Request $request, Quiz $quiz)

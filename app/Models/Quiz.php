@@ -20,6 +20,11 @@ class Quiz extends Model
     ];
     public function createdby()
     {
-        return $this->belongsTo(User::class, 'created_by');
+        return $this->belongsTo(User::class);
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(QuizQuestion::class, 'quiz_id');
     }
 }

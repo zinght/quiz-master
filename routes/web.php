@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\QuizQuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,10 +40,19 @@ Route::group(['prefix' => '/users', 'as' => 'users.'], function(){
 Route::group(['prefix' => '/quizzes', 'as' => 'quizzes.'], function(){
     Route::get('/', [QuizController::class, 'index'])->name('index');
     Route::get('/view/{quiz}', [QuizController::class, 'view'])->name('view');
-    Route::get('/edit/{quiz}', [QuizController::class, 'edit'])->name('edit')->middleware(['middleware' => 'permission:edit quizzes']);
     Route::post('/delete/{quiz}', [QuizController::class, 'submit_delete'])->name('submit_delete')->middleware(['middleware' => 'permission:delete quizzes']);
     Route::get('/delete/{quiz}', [QuizController::class, 'delete'])->name('delete')->middleware(['middleware' => 'permission:delete quizzes']);
     Route::get('/create', [QuizController::class, 'create'])->name('create')->middleware(['middleware' => 'permission:create quizzes']);
     Route::post('/submit', [QuizController::class, 'submit'])->name('submit')->middleware(['middleware' => 'permission:edit quizzes']);
-    Route::post('/create', [QuizController::class, 'submit_new_quiz'])->name('submit_new_quiz')->middleware(['middleware' => 'permission:create quizzes']);;
+    Route::post('/create', [QuizController::class, 'submit_new_quiz'])->name('submit_new_quiz')->middleware(['middleware' => 'permission:create quizzes']);
+
+    Route::group(['prefix' => '/edit/{quiz}', 'as' => 'edit.'], function(){
+        Route::get('/{show?}', [QuizController::class, 'edit'])->name('edit')->middleware(['middleware' => 'permission:edit quizzes']);
+        Route::group(['prefix' => '/questions/', 'as' => 'questions.'], function(){
+            Route::get('/view', [QuizQuestionController::class, 'view'])->name('view');
+            Route::get('/add', [QuizQuestionController::class, 'add'])->name('add');
+            Route::post('/save', [QuizQuestionController::class, 'save'])->name('save');
+        });
+
+    });
 });

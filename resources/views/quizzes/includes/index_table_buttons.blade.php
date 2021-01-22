@@ -7,9 +7,10 @@
     <div class="dropdown-menu">
         <li><a type="button " href="{{route('quizzes.view', [$quiz])}}" class=" dropdown-item btn"  >View</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a type="button " href="{{route('quizzes.edit', [$quiz])}}" class=" dropdown-item btng edit_quiz"  >Edit</a></li>
+        <li><a type="button " href="{{route('quizzes.edit.edit', [$quiz])}}" class=" dropdown-item btng edit_quiz"  >Edit</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><button type="button" class="btn  delete_quiz dropdown-item" data-url="{{route('quizzes.delete', [$quiz])}}">Delete</button></li>
+
     </div>
 </div>
 @else
