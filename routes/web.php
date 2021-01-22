@@ -34,3 +34,11 @@ Route::group(['prefix' => '/users', 'as' => 'users.'], function(){
     Route::post('/submit', [AdminController::class, 'submit_user'])->name('submit_user');
 });
 
+Route::group(['prefix' => '/quizzes', 'as' => 'quizzes.'], function(){
+    Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::get('/edit/{quiz}', [AdminController::class, 'edit_user'])->name('edit');
+    Route::get('/delete/{quiz}', [AdminController::class, 'delete_user'])->name('delete');
+    Route::get('/create', [AdminController::class, 'create_user'])->name('create');
+    Route::post('/create', [AdminController::class, 'submit_new_user'])->name('submit_new_user');
+    Route::post('/submit', [AdminController::class, 'submit_user'])->name('submit_user');
+});
