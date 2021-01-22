@@ -1,5 +1,6 @@
 <div class="modal" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <form action="POST" id="delete_user_form">
+    <form action="{{$formurl}}" id="delete_user_form" method="post" >
+        @csrf
         <div class="modal-dialog modal-lg modal-dialog-centered" >
             <div class="modal-content">
                 <div class="modal-header">
@@ -7,7 +8,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="alert alert-danger">
-                        Are you sure you wish to delete user: {{$delete_title}}?  Once done this cannot be reverted!
+                        Are you sure you wish to delete {{$delete_type}}: {{$delete_title}}?  Once done this cannot be reverted!
                     </div>
 
                 </div>

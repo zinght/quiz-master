@@ -1,15 +1,15 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
+    <div class="container h-100">
+        <div class="row justify-content-center h-100 ">
+            <div class="col-md-10 h-100">
+                <div class="card mh-50">
                     <div class="card-header">Users</div>
 
-                    <div class="card-body">
+                    <div class="card-body h-100">
 
-                        <div class="table-responsive">
-                            <table class="table table table-sm ">
+                        <div class="table-responsive h-100">
+                            <table class="table table table-sm h-100">
                                 <thead>
                                     <th>ID</th>
                                     <th>Name</th>
@@ -23,10 +23,8 @@
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>
-                                            <div class="btn-group btn-group-sm" role="group" >
-                                                <a type="button" href="{{route('users.edit', [$user])}}" class="btn btn-warning btn-sm edit_user"  >Edit</a>
-                                                <button type="button" class="btn btn-danger btn-sm delete_user" data-url="{{route('users.delete', [$user])}}">Delete</button>
-                                            </div>
+
+                                           @include('users.includes.index_table_buttons')
                                         </td>
                                     </tr>
                                 @endforeach
@@ -49,9 +47,11 @@
 @section('javascript')
     <script>
         $( document ).ready(function() {
+            $('.table-responsive').on('show.bs.dropdown', function () {
+                $('.table-responsive').css( "overflow", "inherit" );
+            });
             $(".edit_user").click(function(){
                 let url = $(this).data('url');
-                console.log(url);
                 $.ajax({
                     /* the route pointing to the post function */
                     url: url,
@@ -64,7 +64,6 @@
             });
             $(".delete_user").click(function(){
                 let url = $(this).data('url');
-                console.log(url);
                 $.ajax({
                     /* the route pointing to the post function */
                     url: url,

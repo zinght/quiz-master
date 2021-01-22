@@ -18,7 +18,7 @@ class Quiz extends Model
         'description',
         'created_by',
     ];
-    public function created_by()
+    public function createdby()
     {
         return $this->belongsTo(User::class, 'created_by');
     }

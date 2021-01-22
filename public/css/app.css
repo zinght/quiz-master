@@ -9971,3 +9971,18 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.mh-50 {
+  min-height: 50vh;
+}
+
+.mh-25 {
+  min-height: 25vh;
+}
+
+html, body {
+  height: 100%;
+}
+
+.flex-fill {
+  flex: 1;
+}

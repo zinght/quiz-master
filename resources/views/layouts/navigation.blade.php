@@ -28,6 +28,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @can('manage users')
                                 <a class="dropdown-item" href="{{route('users.index')}}">Users</a>
+                                <span><hr class="dropdown-divider"></span>
                             @endcan
                             <a class="dropdown-item" href="#">Global Results</a>
                         </div>

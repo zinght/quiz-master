@@ -30,6 +30,7 @@ Route::group(['prefix' => '/users', 'as' => 'users.'], function(){
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::get('/edit/{user}', [AdminController::class, 'edit_user'])->name('edit');
     Route::get('/delete/{user}', [AdminController::class, 'delete_user'])->name('delete');
+    Route::post('/delete/{user}', [AdminController::class, 'submit_delete'])->name('submit_delete');
     Route::get('/create', [AdminController::class, 'create_user'])->name('create');
     Route::post('/submit', [AdminController::class, 'submit_user'])->name('submit_user');
     Route::post('/create', [AdminController::class, 'submit_new_user'])->name('submit_new_user');
@@ -37,8 +38,10 @@ Route::group(['prefix' => '/users', 'as' => 'users.'], function(){
 
 Route::group(['prefix' => '/quizzes', 'as' => 'quizzes.'], function(){
     Route::get('/', [QuizController::class, 'index'])->name('index');
-    Route::get('/edit/{quiz}', [QuizController::class, 'edit'])->name('edit');
-    Route::get('/delete/{quiz}', [QuizController::class, 'delete'])->name('delete');
+    Route::get('/view/{quiz}', [QuizController::class, 'view'])->name('view');
+    Route::get('/edit/{quiz}', [QuizController::class, 'edit'])->name('edit')->middleware(['middleware' => 'permission:edit quizzes']);
+    Route::post('/delete/{quiz}', [QuizController::class, 'submit_delete'])->name('submit_delete')->middleware(['middleware' => 'permission:delete quizzes']);
+    Route::get('/delete/{quiz}', [QuizController::class, 'delete'])->name('delete')->middleware(['middleware' => 'permission:delete quizzes']);
     Route::get('/create', [QuizController::class, 'create'])->name('create')->middleware(['middleware' => 'permission:create quizzes']);
     Route::post('/submit', [QuizController::class, 'submit'])->name('submit')->middleware(['middleware' => 'permission:edit quizzes']);
     Route::post('/create', [QuizController::class, 'submit_new_quiz'])->name('submit_new_quiz')->middleware(['middleware' => 'permission:create quizzes']);;

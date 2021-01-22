@@ -21,14 +21,16 @@
 
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="h-100" >
         @if(Session::has('message'))
             <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
         @endif
         @include('layouts.navigation')
+        <main class="py-4">
+            @yield('content')
+        </main>
 
 
-        @yield('content')
 
     </div>
 </body>
