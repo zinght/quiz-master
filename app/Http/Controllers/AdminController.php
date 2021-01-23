@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCreationRequest;
 use App\Http\Requests\UserEditRequest;
-use App\Models\Quiz;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +21,12 @@ class AdminController extends Controller
     {
         $users = User::all();
         return view('users.index', compact('users'));
+    }
+    public function view(Request $request, User $user)
+    {
+        $type = "view";
+        $user->load('quizzes');
+        return view('users.add_edit', compact('type', 'user'));
     }
     public function delete_user(Request $request, User $user)
     {
@@ -43,7 +48,7 @@ class AdminController extends Controller
     {
         $user = User::findorfail($user->id);
         $user->delete();
-        $request->session()->flash('message', 'Quiz Deleted!');
+        $request->session()->flash('message', 'User Deleted!');
         $request->session()->flash('alert-class', 'alert-danger');
         return redirect()->route('users.index');
 
@@ -52,6 +57,7 @@ class AdminController extends Controller
     public function edit_user(Request $request, User $user)
     {
         $type = "edit";
+        $user->load('quizzes');
         $formurl = route('users.submit_user');
         return view('users.add_edit', compact('type', 'formurl', 'user'));
 

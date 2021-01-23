@@ -4,7 +4,7 @@
             aria-expanded="false">
         Options
     </button>
-    <div class="dropdown-menu">
+    <div class="dropdown-menu" style="overflow-y: hidden">
         <li><a type="button " href="{{route('quizzes.view', [$quiz])}}" class=" dropdown-item btn"  >View</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><a type="button " href="{{route('quizzes.edit.edit', [$quiz])}}" class=" dropdown-item btng edit_quiz"  >Edit</a></li>

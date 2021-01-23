@@ -53,11 +53,11 @@ class QuizController extends Controller
         return redirect()->route('quizzes.index');
     }
 
-    public function view(Request $request, Quiz $quiz)
+    public function view(Request $request, Quiz $quiz, $show = false)
     {
         $type = 'view';
         $quiz->load('questions');
-        return view('quizzes.add_edit', compact( 'quiz', 'type'));
+        return view('quizzes.add_edit', compact( 'quiz', 'type', 'show'));
     }
 
     public function edit(Request $request, Quiz $quiz, $show = false)

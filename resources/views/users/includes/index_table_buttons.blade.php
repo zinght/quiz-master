@@ -5,8 +5,11 @@
         Options
     </button>
     <div class="dropdown-menu">
+        <li><a type="button" href="{{route('users.view', [$user])}}" class="dropdown-item edit_user">View</a></li>
+        <li><hr class="dropdown-divider"></li>
         <li><a type="button" href="{{route('users.edit', [$user])}}" class="dropdown-item edit_user">Edit</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><button type="button" class=" delete_user dropdown-item" data-url="{{route('users.delete', [$user])}}">Delete</button></li>
+
     </div>
 </div>

@@ -29,6 +29,7 @@ require __DIR__.'/auth.php';
 
 Route::group(['prefix' => '/users', 'as' => 'users.'], function(){
     Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::get('/view/{user}', [AdminController::class, 'view'])->name('view');
     Route::get('/edit/{user}', [AdminController::class, 'edit_user'])->name('edit');
     Route::get('/delete/{user}', [AdminController::class, 'delete_user'])->name('delete');
     Route::post('/delete/{user}', [AdminController::class, 'submit_delete'])->name('submit_delete');
